@@ -1,0 +1,12 @@
+# Tomcat
+server: 
+  port: 7200
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: measure-auth
+  profiles:
+    active: dev
+    include: common

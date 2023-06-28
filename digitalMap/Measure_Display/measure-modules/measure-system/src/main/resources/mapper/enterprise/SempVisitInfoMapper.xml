@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comac.enterprise.mapper.SempVisitInfoMapper">
+    
+    <resultMap type="SempVisitInfo" id="SempVisitInfoResult">
+        <result property="id"    column="id"    />
+        <result property="enterpriseId"    column="enterprise_id"    />
+        <result property="visitTime"    column="visit_time"    />
+        <result property="visitLeader"    column="visit_leader"    />
+        <result property="visitComment"    column="visit_comment"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateUser"    column="update_user"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectSempVisitInfoVo">
+        select id, enterprise_id, visit_time, visit_leader, visit_comment, create_user, create_time, update_user, update_time, status from semp_visit_info
+    </sql>
+
+    <select id="selectSempVisitInfoList" parameterType="SempVisitInfo" resultMap="SempVisitInfoResult">
+        <include refid="selectSempVisitInfoVo"/>
+        <where>  
+            <if test="enterpriseId != null "> and enterprise_id = #{enterpriseId}</if>
+            <if test="visitTime != null "> and visit_time = #{visitTime}</if>
+            <if test="visitLeader != null  and visitLeader != ''"> and visit_leader = #{visitLeader}</if>
+            <if test="visitComment != null  and visitComment != ''"> and visit_comment = #{visitComment}</if>
+            <if test="createUser != null "> and create_user = #{createUser}</if>
+            <if test="updateUser != null "> and update_user = #{updateUser}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectSempVisitInfoById" parameterType="Long" resultMap="SempVisitInfoResult">
+        <include refid="selectSempVisitInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSempVisitInfo" parameterType="SempVisitInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into semp_visit_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="enterpriseId != null">enterprise_id,</if>
+            <if test="visitTime != null">visit_time,</if>
+            <if test="visitLeader != null">visit_leader,</if>
+            <if test="visitComment != null">visit_comment,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateUser != null">update_user,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="enterpriseId != null">#{enterpriseId},</if>
+            <if test="visitTime != null">#{visitTime},</if>
+            <if test="visitLeader != null">#{visitLeader},</if>
+            <if test="visitComment != null">#{visitComment},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSempVisitInfo" parameterType="SempVisitInfo">
+        update semp_visit_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="enterpriseId != null">enterprise_id = #{enterpriseId},</if>
+            <if test="visitTime != null">visit_time = #{visitTime},</if>
+            <if test="visitLeader != null">visit_leader = #{visitLeader},</if>
+            <if test="visitComment != null">visit_comment = #{visitComment},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSempVisitInfoById" parameterType="Long">
+        delete from semp_visit_info where id = #{id}
+    </delete>
+
+    <delete id="deleteSempVisitInfoByIds" parameterType="String">
+        delete from semp_visit_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteSempVisitInfoByEnterpriseId">
+        delete from semp_visit_info where enterprise_id = #{id}
+
+    </delete>
+</mapper>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comac.system.mapper.SysFileInfoMapper">
+
+    <resultMap type="SysFileInfo" id="SysFileInfoResult">
+        <result property="fileId" column="file_id"/>
+        <result property="fileName" column="file_name"/>
+        <result property="filePath" column="file_path"/>
+        <result property="fileDescribe" column="file_describe"/>
+        <result property="fileType" column="file_type"/>
+        <result property="fileSuffix" column="file_suffix"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="objectUrl" column="object_url"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="agentType" column="agent_type"/>
+        <result property="agentId" column="agent_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createUserName" column="create_user_name"/>
+        <result property="createNickName" column="create_nick_name"/>
+        <result property="updateUserName" column="update_user_name"/>
+        <result property="updateNickName" column="update_nick_name"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectSysFileInfoVo">
+        select file_id,
+               file_name,
+               file_path,
+               file_describe,
+               file_type,
+               file_suffix,
+               file_size,
+               object_url,
+               del_flag,
+               agent_type,
+               agent_id,
+               create_time,
+               create_user_name,
+               create_nick_name,
+               update_user_name,
+               update_nick_name,
+               update_time
+        from sys_file_info
+    </sql>
+
+    <select id="selectSysFileInfoList" parameterType="SysFileInfo" resultMap="SysFileInfoResult">
+        <include refid="selectSysFileInfoVo"/>
+        <where>
+            del_flag=0
+            <if test="fileName != null  and fileName != ''">and file_name like concat('%', #{fileName}, '%')</if>
+            <if test="filePath != null  and filePath != ''">and file_path = #{filePath}</if>
+            <if test="fileDescribe != null  and fileDescribe != ''">and file_describe = #{fileDescribe}</if>
+            <if test="fileType != null  and fileType != ''">and file_type = #{fileType}</if>
+            <if test="fileSuffix != null  and fileSuffix != ''">and file_suffix = #{fileSuffix}</if>
+            <if test="fileSize != null ">and file_size = #{fileSize}</if>
+            <if test="objectUrl != null  and objectUrl != ''">and object_url = #{objectUrl}</if>
+            <if test="agentType != null  and agentType != ''">and agent_type = #{agentType}</if>
+            <if test="agentId != null ">and agent_id = #{agentId}</if>
+            <if test="createUserName != null  and createUserName != ''">and create_user_name like concat('%',
+                #{createUserName}, '%')
+            </if>
+            <if test="createNickName != null  and createNickName != ''">and create_nick_name like concat('%',
+                #{createNickName}, '%')
+            </if>
+            <if test="updateUserName != null  and updateUserName != ''">and update_user_name like concat('%',
+                #{updateUserName}, '%')
+            </if>
+            <if test="updateNickName != null  and updateNickName != ''">and update_nick_name like concat('%',
+                #{updateNickName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectSysFileInfoByFileId" parameterType="Long" resultMap="SysFileInfoResult">
+        <include refid="selectSysFileInfoVo"/>
+        where file_id = #{fileId} and del_flag=0
+    </select>
+
+    <insert id="insertSysFileInfo" parameterType="SysFileInfo" useGeneratedKeys="true" keyProperty="fileId">
+        insert into sys_file_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileName != null">file_name,</if>
+            <if test="filePath != null">file_path,</if>
+            <if test="fileDescribe != null">file_describe,</if>
+            <if test="fileType != null">file_type,</if>
+            <if test="fileSuffix != null">file_suffix,</if>
+            <if test="fileSize != null">file_size,</if>
+            <if test="objectUrl != null">object_url,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="agentType != null">agent_type,</if>
+            <if test="agentId != null">agent_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createUserName != null">create_user_name,</if>
+            <if test="createNickName != null">create_nick_name,</if>
+            <if test="updateUserName != null">update_user_name,</if>
+            <if test="updateNickName != null">update_nick_name,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileName != null">#{fileName},</if>
+            <if test="filePath != null">#{filePath},</if>
+            <if test="fileDescribe != null">#{fileDescribe},</if>
+            <if test="fileType != null">#{fileType},</if>
+            <if test="fileSuffix != null">#{fileSuffix},</if>
+            <if test="fileSize != null">#{fileSize},</if>
+            <if test="objectUrl != null">#{objectUrl},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="agentType != null">#{agentType},</if>
+            <if test="agentId != null">#{agentId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createUserName != null">#{createUserName},</if>
+            <if test="createNickName != null">#{createNickName},</if>
+            <if test="updateUserName != null">#{updateUserName},</if>
+            <if test="updateNickName != null">#{updateNickName},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysFileInfo" parameterType="SysFileInfo">
+        update sys_file_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fileName != null">file_name = #{fileName},</if>
+            <if test="filePath != null">file_path = #{filePath},</if>
+            <if test="fileDescribe != null">file_describe = #{fileDescribe},</if>
+            <if test="fileType != null">file_type = #{fileType},</if>
+            <if test="fileSuffix != null">file_suffix = #{fileSuffix},</if>
+            <if test="fileSize != null">file_size = #{fileSize},</if>
+            <if test="objectUrl != null">object_url = #{objectUrl},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="agentType != null">agent_type = #{agentType},</if>
+            <if test="agentId != null">agent_id = #{agentId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="createUserName != null">create_user_name = #{createUserName},</if>
+            <if test="createNickName != null">create_nick_name = #{createNickName},</if>
+            <if test="updateUserName != null">update_user_name = #{updateUserName},</if>
+            <if test="updateNickName != null">update_nick_name = #{updateNickName},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where file_id = #{fileId}
+    </update>
+    <update id="updateFileByAgent">
+        update sys_file_info
+        set del_flag='2'
+        where agent_id = #{agentId}
+          and agent_type = #{agentType}
+
+    </update>
+
+    <delete id="deleteSysFileInfoByFileId" parameterType="Long">
+        update sys_file_info
+        set del_flag='2'
+        where file_id = #{fileId}
+    </delete>
+
+    <delete id="deleteSysFileInfoByFileIds" parameterType="String">
+        delete from sys_file_info where file_id in
+        <foreach item="fileId" collection="array" open="(" separator="," close=")">
+            #{fileId}
+        </foreach>
+    </delete>
+</mapper>

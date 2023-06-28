@@ -1,0 +1,124 @@
+/* 重置table表头文字颜色 */
+.el-table th.el-table__cell > .cell {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  vertical-align: middle;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  color: #333333; /* #5ea2e0;*/
+}
+
+/* 重置输入框-前面名称-文字大小 */
+.el-form-item__label {
+  text-align: right;
+  vertical-align: middle;
+  float: left;
+  font-size: 12px !important;
+  color: #606266;
+  line-height: 40px;
+  padding: 0 12px 0 0;
+  box-sizing: border-box;
+}
+
+/* 重置输入框提示文字大小 */
+.el-input__inner {
+  -webkit-appearance: none;
+  background-color: #FFF;
+  border-radius: 4px;
+  border: 1px solid #DCDFE6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: smaller !important;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 15px;
+  transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+  width: 100%;
+}
+
+/* 重置下拉框宽度 */
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+  width: 200px !important;
+}
+
+/* 重置输入框宽度 */
+.el-input--small .el-input__inner {
+  height: 32px;
+  line-height: 32px;
+  /*width: 160px !important;*/
+}
+
+/* 重置弹窗样式 */
+.el-dialog {
+  position: relative;
+  margin: 0 auto 50px;
+  /* background: #dbddde !important; */
+  background: #f9f9fa !important;
+  -webkit-box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+  box-shadow: 0 1px 3 pxrgba(0, 0, 0, .3);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 80%;
+  width: 50%;
+  max-height: calc(100% - 50px);
+  max-width: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 重置弹窗body滚动条 */
+.el-dialog > .el-dialog__body {
+  overflow: auto !important;
+}
+
+/* 重置弹窗title背景 */
+.el-dialog__header {
+  padding: 20px 20px 10px;
+  background-color: #2e2e56;
+}
+
+/* 重置弹窗title颜色 */
+.el-dialog__title {
+  line-height: 24px;
+  font-size: 18px;
+  color: #f2f6fc !important;
+}
+
+/* 重置drawe-title背景和文字颜色 */
+.el-drawer__header {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /*color: white !important;*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0px !important;
+  padding: 20px 20px 20px !important;
+  /*background-color: #2e2e56;*/
+  border: 1px solid #dddddd;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000 !important;
+  line-height: 24px;
+}
+
+/* 重置drawe-body左侧间距 */
+.el-drawer__body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow: auto;
+  padding-left: 10px !important;
+}
+
+/* 重置下拉数字体大小 */
+.el-tree-node__label {
+  font-size: 13px !important;
+}

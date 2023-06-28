@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comac.enterprise.mapper.SempEnterpriseOperationExtInfoMapper">
+
+    <resultMap type="SempEnterpriseOperationExtInfo" id="SempEnterpriseOperationExtInfoResult">
+        <result property="id" column="id"/>
+        <result property="enterpriseId" column="enterprise_id"/>
+        <result property="enterpriseName" column="enterprise_name"/>
+        <result property="certCode" column="cert_code"/>
+        <result property="mainBusiness" column="main_business"/>
+        <result property="actualOfficeAddress" column="actual_office_address"/>
+        <result property="enterpriseType" column="enterprise_type"/>
+        <result property="contact" column="contact"/>
+        <result property="contactPhone" column="contact_phone"/>
+        <result property="visitTime" column="visit_time"/>
+        <result property="negotiationContent" column="negotiation_content"/>
+        <result property="operationAnnual" column="operation_annual"/>
+        <result property="lastDecemberRevenue" column="last_december_revenue"/>
+        <result property="currentDecemberRevenue" column="current_december_revenue"/>
+        <result property="currentJanuaryToNovemberActualRevenue" column="current_january_to_november_actual_revenue"/>
+        <result property="currentJanuaryToNovemberForecastRevenue"
+                column="current_january_to_november_forecast_revenue"/>
+        <result property="lastJanuaryToNovemberRevenue" column="last_january_to_november_revenue"/>
+        <result property="currentJanuaryToAugustActualRevenue" column="current_january_to_august_actual_revenue"/>
+        <result property="currentJanuaryToAugustForecastRevenue" column="current_january_to_august_forecast_revenue"/>
+        <result property="lastJanuaryToAugustRevenue" column="last_january_to_august_revenue"/>
+        <result property="currentJanuaryToMayActualRevenue" column="current_january_to_may_actual_revenue"/>
+        <result property="currentJanuaryToMayForecastRevenue" column="current_january_to_may_forecast_revenue"/>
+        <result property="lastJanuaryToMayRevenue" column="last_january_to_may_revenue"/>
+        <result property="currentJanuaryToFebruaryActualRevenue" column="current_january_to_february_actual_revenue"/>
+        <result property="currentJanuaryToFebruaryForecastRevenue"
+                column="current_january_to_february_forecast_revenue"/>
+        <result property="lastJanuaryToFebruaryRevenue" column="last_january_to_february_revenue"/>
+        <result property="forecastActualDifference" column="forecast_actual_difference"/>
+        <result property="growthRate" column="growth_rate"/>
+        <result property="revenueAdd" column="revenue_add"/>
+        <result property="abnormalRevenueReason" column="abnormal_revenue_reason"/>
+        <result property="problems" column="problems"/>
+        <result property="nextPlan" column="next_plan"/>
+        <result property="fourOnResponseDept" column="four_on_response_dept"/>
+        <result property="projectSpecialist" column="project_specialist"/>
+        <result property="comment" column="comment"/>
+        <result property="status" column="status"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectSempEnterpriseOperationExtInfoVo">
+        select id,
+               enterprise_id,
+               enterprise_name,
+               cert_code,
+               main_business,
+               actual_office_address,
+               enterprise_type,
+               contact,
+               contact_phone,
+               visit_time,
+               negotiation_content,
+               operation_annual,
+               last_december_revenue,
+               current_december_revenue,
+               current_january_to_november_actual_revenue,
+               current_january_to_november_forecast_revenue,
+               last_january_to_november_revenue,
+               current_january_to_august_actual_revenue,
+               current_january_to_august_forecast_revenue,
+               last_january_to_august_revenue,
+               current_january_to_may_actual_revenue,
+               current_january_to_may_forecast_revenue,
+               last_january_to_may_revenue,
+               current_january_to_february_actual_revenue,
+               current_january_to_february_forecast_revenue,
+               last_january_to_february_revenue,
+               forecast_actual_difference,
+               growth_rate,
+               revenue_add,
+               abnormal_revenue_reason,
+               problems,
+               next_plan,
+               four_on_response_dept,
+               project_specialist,
+               comment,
+               status,
+               create_user,
+               create_time,
+               update_user,
+               update_time
+        from semp_enterprise_operation_ext_info
+    </sql>
+
+    <select id="selectSempEnterpriseOperationExtInfoList" parameterType="SempEnterpriseOperationExtInfo"
+            resultMap="SempEnterpriseOperationExtInfoResult">
+        <include refid="selectSempEnterpriseOperationExtInfoVo"/>
+        <where>
+            <if test="enterpriseId != null  and enterpriseId != ''">and enterprise_id =#{enterpriseId}
+            </if>
+           <if test="enterpriseName != null  and enterpriseName != ''">and enterprise_name like concat('%',
+                #{enterpriseName}, '%')
+            </if>
+            <if test="certCode != null  and certCode != ''">and cert_code = #{certCode}</if>
+            <if test="mainBusiness != null  and mainBusiness != ''">and main_business = #{mainBusiness}</if>
+            <if test="actualOfficeAddress != null  and actualOfficeAddress != ''">and actual_office_address =
+                #{actualOfficeAddress}
+            </if>
+            <if test="enterpriseType != null  and enterpriseType != ''">and enterprise_type = #{enterpriseType}</if>
+            <if test="contact != null  and contact != ''">and contact = #{contact}</if>
+            <if test="contactPhone != null  and contactPhone != ''">and contact_phone = #{contactPhone}</if>
+            <if test="visitTime != null ">and visit_time = #{visitTime}</if>
+            <if test="negotiationContent != null  and negotiationContent != ''">and negotiation_content =
+                #{negotiationContent}
+            </if>
+            <if test="operationAnnual != null  and operationAnnual != ''">and operation_annual = #{operationAnnual}</if>
+            <if test="lastDecemberRevenue != null  and lastDecemberRevenue != ''">and last_december_revenue =
+                #{lastDecemberRevenue}
+            </if>
+            <if test="currentDecemberRevenue != null  and currentDecemberRevenue != ''">and current_december_revenue =
+                #{currentDecemberRevenue}
+            </if>
+            <if test="currentJanuaryToNovemberActualRevenue != null  and currentJanuaryToNovemberActualRevenue != ''">
+                and current_january_to_november_actual_revenue = #{currentJanuaryToNovemberActualRevenue}
+            </if>
+            <if test="currentJanuaryToNovemberForecastRevenue != null  and currentJanuaryToNovemberForecastRevenue != ''">
+                and current_january_to_november_forecast_revenue = #{currentJanuaryToNovemberForecastRevenue}
+            </if>
+            <if test="lastJanuaryToNovemberRevenue != null  and lastJanuaryToNovemberRevenue != ''">and
+                last_january_to_november_revenue = #{lastJanuaryToNovemberRevenue}
+            </if>
+            <if test="currentJanuaryToAugustActualRevenue != null  and currentJanuaryToAugustActualRevenue != ''">and
+                current_january_to_august_actual_revenue = #{currentJanuaryToAugustActualRevenue}
+            </if>
+            <if test="currentJanuaryToAugustForecastRevenue != null  and currentJanuaryToAugustForecastRevenue != ''">
+                and current_january_to_august_forecast_revenue = #{currentJanuaryToAugustForecastRevenue}
+            </if>
+            <if test="lastJanuaryToAugustRevenue != null  and lastJanuaryToAugustRevenue != ''">and
+                last_january_to_august_revenue = #{lastJanuaryToAugustRevenue}
+            </if>
+            <if test="currentJanuaryToMayActualRevenue != null  and currentJanuaryToMayActualRevenue != ''">and
+                current_january_to_may_actual_revenue = #{currentJanuaryToMayActualRevenue}
+            </if>
+            <if test="currentJanuaryToMayForecastRevenue != null  and currentJanuaryToMayForecastRevenue != ''">and
+                current_january_to_may_forecast_revenue = #{currentJanuaryToMayForecastRevenue}
+            </if>
+            <if test="lastJanuaryToMayRevenue != null  and lastJanuaryToMayRevenue != ''">and
+                last_january_to_may_revenue = #{lastJanuaryToMayRevenue}
+            </if>
+            <if test="currentJanuaryToFebruaryActualRevenue != null  and currentJanuaryToFebruaryActualRevenue != ''">
+                and current_january_to_february_actual_revenue = #{currentJanuaryToFebruaryActualRevenue}
+            </if>
+            <if test="currentJanuaryToFebruaryForecastRevenue != null  and currentJanuaryToFebruaryForecastRevenue != ''">
+                and current_january_to_february_forecast_revenue = #{currentJanuaryToFebruaryForecastRevenue}
+            </if>
+            <if test="lastJanuaryToFebruaryRevenue != null  and lastJanuaryToFebruaryRevenue != ''">and
+                last_january_to_february_revenue = #{lastJanuaryToFebruaryRevenue}
+            </if>
+            <if test="forecastActualDifference != null  and forecastActualDifference != ''">and
+                forecast_actual_difference = #{forecastActualDifference}
+            </if>
+            <if test="growthRate != null  and growthRate != ''">and growth_rate = #{growthRate}</if>
+            <if test="revenueAdd != null  and revenueAdd != ''">and revenue_add = #{revenueAdd}</if>
+            <if test="abnormalRevenueReason != null  and abnormalRevenueReason != ''">and abnormal_revenue_reason =
+                #{abnormalRevenueReason}
+            </if>
+            <if test="problems != null  and problems != ''">and problems = #{problems}</if>
+            <if test="nextPlan != null  and nextPlan != ''">and next_plan = #{nextPlan}</if>
+            <if test="fourOnResponseDept != null  and fourOnResponseDept != ''">and four_on_response_dept =
+                #{fourOnResponseDept}
+            </if>
+            <if test="projectSpecialist != null  and projectSpecialist != ''">and project_specialist =
+                #{projectSpecialist}
+            </if>
+            <if test="comment != null  and comment != ''">and comment = #{comment}</if>
+            <if test="status != null  and status != ''">and status = #{status}</if>
+            <if test="createUser != null ">and create_user = #{createUser}</if>
+            <if test="updateUser != null ">and update_user = #{updateUser}</if>
+        </where>
+    </select>
+
+    <select id="selectSempEnterpriseOperationExtInfoById" parameterType="Long"
+            resultMap="SempEnterpriseOperationExtInfoResult">
+        <include refid="selectSempEnterpriseOperationExtInfoVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSempEnterpriseOperationExtInfo" parameterType="SempEnterpriseOperationExtInfo"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into semp_enterprise_operation_ext_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="enterpriseId != null">enterprise_id,</if>
+            <if test="enterpriseName != null">enterprise_name,</if>
+            <if test="certCode != null">cert_code,</if>
+            <if test="mainBusiness != null">main_business,</if>
+            <if test="actualOfficeAddress != null">actual_office_address,</if>
+            <if test="enterpriseType != null">enterprise_type,</if>
+            <if test="contact != null">contact,</if>
+            <if test="contactPhone != null">contact_phone,</if>
+            <if test="visitTime != null">visit_time,</if>
+            <if test="negotiationContent != null">negotiation_content,</if>
+            <if test="operationAnnual != null">operation_annual,</if>
+            <if test="lastDecemberRevenue != null">last_december_revenue,</if>
+            <if test="currentDecemberRevenue != null">current_december_revenue,</if>
+            <if test="currentJanuaryToNovemberActualRevenue != null">current_january_to_november_actual_revenue,</if>
+            <if test="currentJanuaryToNovemberForecastRevenue != null">current_january_to_november_forecast_revenue,
+            </if>
+            <if test="lastJanuaryToNovemberRevenue != null">last_january_to_november_revenue,</if>
+            <if test="currentJanuaryToAugustActualRevenue != null">current_january_to_august_actual_revenue,</if>
+            <if test="currentJanuaryToAugustForecastRevenue != null">current_january_to_august_forecast_revenue,</if>
+            <if test="lastJanuaryToAugustRevenue != null">last_january_to_august_revenue,</if>
+            <if test="currentJanuaryToMayActualRevenue != null">current_january_to_may_actual_revenue,</if>
+            <if test="currentJanuaryToMayForecastRevenue != null">current_january_to_may_forecast_revenue,</if>
+            <if test="lastJanuaryToMayRevenue != null">last_january_to_may_revenue,</if>
+            <if test="currentJanuaryToFebruaryActualRevenue != null">current_january_to_february_actual_revenue,</if>
+            <if test="currentJanuaryToFebruaryForecastRevenue != null">current_january_to_february_forecast_revenue,
+            </if>
+            <if test="lastJanuaryToFebruaryRevenue != null">last_january_to_february_revenue,</if>
+            <if test="forecastActualDifference != null">forecast_actual_difference,</if>
+            <if test="growthRate != null">growth_rate,</if>
+            <if test="revenueAdd != null">revenue_add,</if>
+            <if test="abnormalRevenueReason != null">abnormal_revenue_reason,</if>
+            <if test="problems != null">problems,</if>
+            <if test="nextPlan != null">next_plan,</if>
+            <if test="fourOnResponseDept != null">four_on_response_dept,</if>
+            <if test="projectSpecialist != null">project_specialist,</if>
+            <if test="comment != null">comment,</if>
+            <if test="status != null">status,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateUser != null">update_user,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="enterpriseId != null">#{enterpriseId},</if>
+            <if test="enterpriseName != null">#{enterpriseName},</if>
+            <if test="certCode != null">#{certCode},</if>
+            <if test="mainBusiness != null">#{mainBusiness},</if>
+            <if test="actualOfficeAddress != null">#{actualOfficeAddress},</if>
+            <if test="enterpriseType != null">#{enterpriseType},</if>
+            <if test="contact != null">#{contact},</if>
+            <if test="contactPhone != null">#{contactPhone},</if>
+            <if test="visitTime != null">#{visitTime},</if>
+            <if test="negotiationContent != null">#{negotiationContent},</if>
+            <if test="operationAnnual != null">#{operationAnnual},</if>
+            <if test="lastDecemberRevenue != null">#{lastDecemberRevenue},</if>
+            <if test="currentDecemberRevenue != null">#{currentDecemberRevenue},</if>
+            <if test="currentJanuaryToNovemberActualRevenue != null">#{currentJanuaryToNovemberActualRevenue},</if>
+            <if test="currentJanuaryToNovemberForecastRevenue != null">#{currentJanuaryToNovemberForecastRevenue},</if>
+            <if test="lastJanuaryToNovemberRevenue != null">#{lastJanuaryToNovemberRevenue},</if>
+            <if test="currentJanuaryToAugustActualRevenue != null">#{currentJanuaryToAugustActualRevenue},</if>
+            <if test="currentJanuaryToAugustForecastRevenue != null">#{currentJanuaryToAugustForecastRevenue},</if>
+            <if test="lastJanuaryToAugustRevenue != null">#{lastJanuaryToAugustRevenue},</if>
+            <if test="currentJanuaryToMayActualRevenue != null">#{currentJanuaryToMayActualRevenue},</if>
+            <if test="currentJanuaryToMayForecastRevenue != null">#{currentJanuaryToMayForecastRevenue},</if>
+            <if test="lastJanuaryToMayRevenue != null">#{lastJanuaryToMayRevenue},</if>
+            <if test="currentJanuaryToFebruaryActualRevenue != null">#{currentJanuaryToFebruaryActualRevenue},</if>
+            <if test="currentJanuaryToFebruaryForecastRevenue != null">#{currentJanuaryToFebruaryForecastRevenue},</if>
+            <if test="lastJanuaryToFebruaryRevenue != null">#{lastJanuaryToFebruaryRevenue},</if>
+            <if test="forecastActualDifference != null">#{forecastActualDifference},</if>
+            <if test="growthRate != null">#{growthRate},</if>
+            <if test="revenueAdd != null">#{revenueAdd},</if>
+            <if test="abnormalRevenueReason != null">#{abnormalRevenueReason},</if>
+            <if test="problems != null">#{problems},</if>
+            <if test="nextPlan != null">#{nextPlan},</if>
+            <if test="fourOnResponseDept != null">#{fourOnResponseDept},</if>
+            <if test="projectSpecialist != null">#{projectSpecialist},</if>
+            <if test="comment != null">#{comment},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+    <insert id="batchInsertSempEnterpriseOperationExtInfo">
+        insert into test (
+        enterprise_id,
+        enterprise_name,
+        cert_code,
+        main_business,
+        actual_office_address,
+        enterprise_type,
+        contact,
+        contact_phone,
+        visit_time,
+        negotiation_content,
+        operation_annual,
+        last_december_revenue,
+        current_december_revenue,
+        current_january_to_november_actual_revenue,
+        current_january_to_november_forecast_revenue,
+        last_january_to_november_revenue,
+        current_january_to_august_actual_revenue,
+        current_january_to_august_forecast_revenue,
+        last_january_to_august_revenue,
+        current_january_to_may_actual_revenue,
+        current_january_to_may_forecast_revenue,
+        last_january_to_may_revenue,
+        current_january_to_february_actual_revenue,
+        current_january_to_february_forecast_revenue,
+        last_january_to_february_revenue,
+        forecast_actual_difference,
+        growth_rate,
+        revenue_add,
+        abnormal_revenue_reason,
+        problems,
+        next_plan,
+        four_on_response_dept,
+        project_specialist,
+        comment,
+        status,
+        create_user,
+        create_time,
+        update_user,
+        update_time
+        )
+        values
+        <foreach collection="record" item="item" separator=",">
+            (
+            <if test="enterpriseId != null">#{enterpriseId},</if>
+            <if test="enterpriseName != null">#{enterpriseName},</if>
+            <if test="certCode != null">#{certCode},</if>
+            <if test="mainBusiness != null">#{mainBusiness},</if>
+            <if test="actualOfficeAddress != null">#{actualOfficeAddress},</if>
+            <if test="enterpriseType != null">#{enterpriseType},</if>
+            <if test="contact != null">#{contact},</if>
+            <if test="contactPhone != null">#{contactPhone},</if>
+            <if test="visitTime != null">#{visitTime},</if>
+            <if test="negotiationContent != null">#{negotiationContent},</if>
+            <if test="operationAnnual != null">#{operationAnnual},</if>
+            <if test="lastDecemberRevenue != null">#{lastDecemberRevenue},</if>
+            <if test="currentDecemberRevenue != null">#{currentDecemberRevenue},</if>
+            <if test="currentJanuaryToNovemberActualRevenue != null">#{currentJanuaryToNovemberActualRevenue},</if>
+            <if test="currentJanuaryToNovemberForecastRevenue != null">#{currentJanuaryToNovemberForecastRevenue},</if>
+            <if test="lastJanuaryToNovemberRevenue != null">#{lastJanuaryToNovemberRevenue},</if>
+            <if test="currentJanuaryToAugustActualRevenue != null">#{currentJanuaryToAugustActualRevenue},</if>
+            <if test="currentJanuaryToAugustForecastRevenue != null">#{currentJanuaryToAugustForecastRevenue},</if>
+            <if test="lastJanuaryToAugustRevenue != null">#{lastJanuaryToAugustRevenue},</if>
+            <if test="currentJanuaryToMayActualRevenue != null">#{currentJanuaryToMayActualRevenue},</if>
+            <if test="currentJanuaryToMayForecastRevenue != null">#{currentJanuaryToMayForecastRevenue},</if>
+            <if test="lastJanuaryToMayRevenue != null">#{lastJanuaryToMayRevenue},</if>
+            <if test="currentJanuaryToFebruaryActualRevenue != null">#{currentJanuaryToFebruaryActualRevenue},</if>
+            <if test="currentJanuaryToFebruaryForecastRevenue != null">#{currentJanuaryToFebruaryForecastRevenue},</if>
+            <if test="lastJanuaryToFebruaryRevenue != null">#{lastJanuaryToFebruaryRevenue},</if>
+            <if test="forecastActualDifference != null">#{forecastActualDifference},</if>
+            <if test="growthRate != null">#{growthRate},</if>
+            <if test="revenueAdd != null">#{revenueAdd},</if>
+            <if test="abnormalRevenueReason != null">#{abnormalRevenueReason},</if>
+            <if test="problems != null">#{problems},</if>
+            <if test="nextPlan != null">#{nextPlan},</if>
+            <if test="fourOnResponseDept != null">#{fourOnResponseDept},</if>
+            <if test="projectSpecialist != null">#{projectSpecialist},</if>
+            <if test="comment != null">#{comment},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            )
+        </foreach>
+
+    </insert>
+
+    <update id="updateSempEnterpriseOperationExtInfo" parameterType="SempEnterpriseOperationExtInfo">
+        update semp_enterprise_operation_ext_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="enterpriseId != null">enterprise_id = #{enterpriseId},</if>
+            <if test="enterpriseName != null">enterprise_name = #{enterpriseName},</if>
+            <if test="certCode != null">cert_code = #{certCode},</if>
+            <if test="mainBusiness != null">main_business = #{mainBusiness},</if>
+            <if test="actualOfficeAddress != null">actual_office_address = #{actualOfficeAddress},</if>
+            <if test="enterpriseType != null">enterprise_type = #{enterpriseType},</if>
+            <if test="contact != null">contact = #{contact},</if>
+            <if test="contactPhone != null">contact_phone = #{contactPhone},</if>
+            <if test="visitTime != null">visit_time = #{visitTime},</if>
+            <if test="negotiationContent != null">negotiation_content = #{negotiationContent},</if>
+            <if test="operationAnnual != null">operation_annual = #{operationAnnual},</if>
+            <if test="lastDecemberRevenue != null">last_december_revenue = #{lastDecemberRevenue},</if>
+            <if test="currentDecemberRevenue != null">current_december_revenue = #{currentDecemberRevenue},</if>
+            <if test="currentJanuaryToNovemberActualRevenue != null">current_january_to_november_actual_revenue =
+                #{currentJanuaryToNovemberActualRevenue},
+            </if>
+            <if test="currentJanuaryToNovemberForecastRevenue != null">current_january_to_november_forecast_revenue =
+                #{currentJanuaryToNovemberForecastRevenue},
+            </if>
+            <if test="lastJanuaryToNovemberRevenue != null">last_january_to_november_revenue =
+                #{lastJanuaryToNovemberRevenue},
+            </if>
+            <if test="currentJanuaryToAugustActualRevenue != null">current_january_to_august_actual_revenue =
+                #{currentJanuaryToAugustActualRevenue},
+            </if>
+            <if test="currentJanuaryToAugustForecastRevenue != null">current_january_to_august_forecast_revenue =
+                #{currentJanuaryToAugustForecastRevenue},
+            </if>
+            <if test="lastJanuaryToAugustRevenue != null">last_january_to_august_revenue =
+                #{lastJanuaryToAugustRevenue},
+            </if>
+            <if test="currentJanuaryToMayActualRevenue != null">current_january_to_may_actual_revenue =
+                #{currentJanuaryToMayActualRevenue},
+            </if>
+            <if test="currentJanuaryToMayForecastRevenue != null">current_january_to_may_forecast_revenue =
+                #{currentJanuaryToMayForecastRevenue},
+            </if>
+            <if test="lastJanuaryToMayRevenue != null">last_january_to_may_revenue = #{lastJanuaryToMayRevenue},</if>
+            <if test="currentJanuaryToFebruaryActualRevenue != null">current_january_to_february_actual_revenue =
+                #{currentJanuaryToFebruaryActualRevenue},
+            </if>
+            <if test="currentJanuaryToFebruaryForecastRevenue != null">current_january_to_february_forecast_revenue =
+                #{currentJanuaryToFebruaryForecastRevenue},
+            </if>
+            <if test="lastJanuaryToFebruaryRevenue != null">last_january_to_february_revenue =
+                #{lastJanuaryToFebruaryRevenue},
+            </if>
+            <if test="forecastActualDifference != null">forecast_actual_difference = #{forecastActualDifference},</if>
+            <if test="growthRate != null">growth_rate = #{growthRate},</if>
+            <if test="revenueAdd != null">revenue_add = #{revenueAdd},</if>
+            <if test="abnormalRevenueReason != null">abnormal_revenue_reason = #{abnormalRevenueReason},</if>
+            <if test="problems != null">problems = #{problems},</if>
+            <if test="nextPlan != null">next_plan = #{nextPlan},</if>
+            <if test="fourOnResponseDept != null">four_on_response_dept = #{fourOnResponseDept},</if>
+            <if test="projectSpecialist != null">project_specialist = #{projectSpecialist},</if>
+            <if test="comment != null">comment = #{comment},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSempEnterpriseOperationExtInfoById" parameterType="Long">
+        delete
+        from semp_enterprise_operation_ext_info
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteSempEnterpriseOperationExtInfoByIds" parameterType="String">
+        delete from semp_enterprise_operation_ext_info where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteSempEnterpriseOperationExtInfoByEnterpriseId">
+        delete
+        from semp_enterprise_operation_ext_info
+        where enterprise_id = #{id}
+    </delete>
+</mapper>

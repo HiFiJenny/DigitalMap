@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.comac.common.minio.configure.MinioConfigure,\
+com.comac.common.minio.service.MinioUtil

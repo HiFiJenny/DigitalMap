@@ -1,0 +1,63 @@
+#DEV
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 172.16.41.13:8848
+        namespace: measure-dev
+      config:
+        # 配置中心地址
+        server-addr: 172.16.41.13:8848
+        namespace: measure-dev
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#TEST
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: localhost:8848
+        namespace: measure-test
+      config:
+        # 配置中心地址
+        server-addr: localhost:8848
+        namespace: measure-test
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#PROD
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 192.168.91.124:8848
+        namespace: measure-prod
+      config:
+        # 配置中心地址
+        server-addr: 192.168.91.124:8848
+        namespace: measure-prod
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}

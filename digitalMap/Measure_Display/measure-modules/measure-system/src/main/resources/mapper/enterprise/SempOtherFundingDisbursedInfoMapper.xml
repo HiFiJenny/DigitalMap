@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.comac.enterprise.mapper.SempOtherFundingDisbursedInfoMapper">
+    
+    <resultMap type="SempOtherFundingDisbursedInfo" id="SempOtherFundingDisbursedInfoResult">
+        <result property="id"    column="id"    />
+        <result property="enterpriseId"    column="enterprise_id"    />
+        <result property="otherFundingAnnual"    column="other_funding_annual"    />
+        <result property="fundsCategory"    column="funds_category"    />
+        <result property="fileOrProjectName"    column="file_or_project_name"    />
+        <result property="otherFundingAmount"    column="other_funding_amount"    />
+        <result property="disbursementDepartment"    column="disbursement_department"    />
+        <result property="otherFundingComment"    column="other_funding_comment"    />
+        <result property="createUser"    column="create_user"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateUser"    column="update_user"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectSempOtherFundingDisbursedInfoVo">
+        select id, enterprise_id, other_funding_annual, funds_category, file_or_project_name, other_funding_amount, disbursement_department, other_funding_comment, create_user, create_time, update_user, update_time, status from semp_other_funding_disbursed_info
+    </sql>
+
+    <select id="selectSempOtherFundingDisbursedInfoList" parameterType="SempOtherFundingDisbursedInfo" resultMap="SempOtherFundingDisbursedInfoResult">
+        <include refid="selectSempOtherFundingDisbursedInfoVo"/>
+        <where>  
+            <if test="enterpriseId != null "> and enterprise_id = #{enterpriseId}</if>
+            <if test="otherFundingAnnual != null  and otherFundingAnnual != ''"> and other_funding_annual = #{otherFundingAnnual}</if>
+            <if test="fundsCategory != null  and fundsCategory != ''"> and funds_category = #{fundsCategory}</if>
+            <if test="fileOrProjectName != null  and fileOrProjectName != ''"> and file_or_project_name like concat('%', #{fileOrProjectName}, '%')</if>
+            <if test="otherFundingAmount != null  and otherFundingAmount != ''"> and other_funding_amount = #{otherFundingAmount}</if>
+            <if test="disbursementDepartment != null  and disbursementDepartment != ''"> and disbursement_department = #{disbursementDepartment}</if>
+            <if test="otherFundingComment != null  and otherFundingComment != ''"> and other_funding_comment = #{otherFundingComment}</if>
+            <if test="createUser != null "> and create_user = #{createUser}</if>
+            <if test="updateUser != null "> and update_user = #{updateUser}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectSempOtherFundingDisbursedInfoById" parameterType="Long" resultMap="SempOtherFundingDisbursedInfoResult">
+        <include refid="selectSempOtherFundingDisbursedInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSempOtherFundingDisbursedInfo" parameterType="SempOtherFundingDisbursedInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into semp_other_funding_disbursed_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="enterpriseId != null">enterprise_id,</if>
+            <if test="otherFundingAnnual != null">other_funding_annual,</if>
+            <if test="fundsCategory != null">funds_category,</if>
+            <if test="fileOrProjectName != null">file_or_project_name,</if>
+            <if test="otherFundingAmount != null">other_funding_amount,</if>
+            <if test="disbursementDepartment != null">disbursement_department,</if>
+            <if test="otherFundingComment != null">other_funding_comment,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateUser != null">update_user,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="enterpriseId != null">#{enterpriseId},</if>
+            <if test="otherFundingAnnual != null">#{otherFundingAnnual},</if>
+            <if test="fundsCategory != null">#{fundsCategory},</if>
+            <if test="fileOrProjectName != null">#{fileOrProjectName},</if>
+            <if test="otherFundingAmount != null">#{otherFundingAmount},</if>
+            <if test="disbursementDepartment != null">#{disbursementDepartment},</if>
+            <if test="otherFundingComment != null">#{otherFundingComment},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSempOtherFundingDisbursedInfo" parameterType="SempOtherFundingDisbursedInfo">
+        update semp_other_funding_disbursed_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="enterpriseId != null">enterprise_id = #{enterpriseId},</if>
+            <if test="otherFundingAnnual != null">other_funding_annual = #{otherFundingAnnual},</if>
+            <if test="fundsCategory != null">funds_category = #{fundsCategory},</if>
+            <if test="fileOrProjectName != null">file_or_project_name = #{fileOrProjectName},</if>
+            <if test="otherFundingAmount != null">other_funding_amount = #{otherFundingAmount},</if>
+            <if test="disbursementDepartment != null">disbursement_department = #{disbursementDepartment},</if>
+            <if test="otherFundingComment != null">other_funding_comment = #{otherFundingComment},</if>
+            <if test="createUser != null">create_user = #{createUser},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSempOtherFundingDisbursedInfoById" parameterType="Long">
+        delete from semp_other_funding_disbursed_info where id = #{id}
+    </delete>
+
+    <delete id="deleteSempOtherFundingDisbursedInfoByIds" parameterType="String">
+        delete from semp_other_funding_disbursed_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteSempOtherFundingDisbursedInfoByEnterpriseId">
+        delete from semp_other_funding_disbursed_info where enterprise_id = #{id}
+
+    </delete>
+</mapper>
